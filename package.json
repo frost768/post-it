@@ -1,0 +1,71 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "latest",
+    "bs58": "^5.0.0",
+    "kubo-rpc-client": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
+    "web-vitals": "^2.1.4",
+    "web3": "^4.0.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "eslint": "^8.46.0",
+    "react-scripts": "5.0.1",
+    "typescript": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "deploy:sol": "cd src && truffle deploy && cd .. && node extractAbi.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix --ext .tsx,.ts src"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "indent": [
+        "error",
+        2
+      ],
+      "no-multi-spaces": [
+        "error"
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
