@@ -51,15 +51,7 @@ export default function Profile() {
     <>
       <Container maxWidth="md">
         <Card>
-          <CardHeader avatar={<Avatar />}>{localUser?.name}</CardHeader>
-          {localUser?.profilePicture ? (
-            <img alt={localUser.name} src={localUser.profilePicture} />
-          ) : null}
-          <CardContent>
-            <Typography color={'black'} variant="h5">
-              <div>{localUser?.id}</div>
-            </Typography>
-          </CardContent>
+          <CardHeader title={localUser?.name} avatar={<Avatar />} />
         </Card>
       </Container>
       <Container maxWidth="sm">

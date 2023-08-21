@@ -10,10 +10,11 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 
 import { Post } from '../types';
-import { AttachMoney, Reply } from '@mui/icons-material';
+import { Reply } from '@mui/icons-material';
 import PostTextContainer from './PostTextContainer';
 import { useAuth } from '../contexts/AuthContext';
 import { usePosts } from '../contexts/PostsContext';
+import { Link } from 'react-router-dom';
 
 export default function PostComponent({ post }: { post: Post }) {
   const { address } = useAuth();
@@ -34,17 +35,16 @@ export default function PostComponent({ post }: { post: Post }) {
     setModal(false);
   }, []);
 
-  function handleTip(): void {
-    console.log('tip');
-  }
 
   return (
     <>
       {modal && <PostTextContainer postId={post.id} callback={handleModal} />}
       <Card sx={{ minWidth: '100%' }}>
         <CardHeader
-          avatar={<Avatar sx={{ bgcolor: red[500] }}>{post.authorName}</Avatar>}
+          title={<Link to={`/profile/${post.author}`}>{post.authorName}</Link>}
+          avatar={<Avatar sx={{ bgcolor: red[500] }} />}
         />
+         
         {post.mediaCid ? (
           <CardMedia component="img" image={post.mediaCid} alt="image" />
         ) : null}
@@ -65,7 +65,7 @@ export default function PostComponent({ post }: { post: Post }) {
             >
               <CardHeader
                 avatar={
-                  <Avatar sx={{ bgcolor: red[500] }}>{post.content}</Avatar>
+                  <Avatar sx={{ bgcolor: red[500] }}>{post.author}</Avatar>
                 }
               />
               {replies[0].mediaCid ? (

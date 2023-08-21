@@ -790,7 +790,10 @@ class PostItContract implements PostItContract {
       result = result.map(this.toPostModel.bind(this));
       result = await Promise.all(result.map(x => { 
         return fetch(this.toIpfsMediaUrl(x.content)).then(y => y.text().then(c => x.content = c).then(res => {
-          return x;
+          return this.getUserByAddress(x.author).then(user => {
+            x.authorName = user?.name ?? x.author;
+            return x;
+          });
         }));
       }));
       return result;
@@ -844,7 +847,6 @@ class PostItContract implements PostItContract {
     let result : Post[] = [];
     try {
       const response = await this.contract.methods.getMyPosts().call();
-      console.log(response, 'dfkjhgfjkdgfkdghdfjkhgfd');
       
       if (!response) return [];
       result = response.map(this.toPostModel.bind(this));
