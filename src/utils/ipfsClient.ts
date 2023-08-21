@@ -16,7 +16,6 @@ if(process.env.NODE_ENV !== 'development') {
   config.headers = { authorization };
   config.port = 5001;
 }
-console.log(config);
 
 const ipfs = create(config);
 

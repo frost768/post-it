@@ -21,7 +21,6 @@ interface IAuthContext extends IAuthContextFunctions {
 }
 if (window.ethereum) {
   window.ethereum.on('accountsChanged', async (accounts: string[]) => {
-    console.log(accounts[0]);
     const AccountChangedEvent = new CustomEvent('AccountChanged', { detail: accounts[0]});
     window.dispatchEvent(AccountChangedEvent);
   });
@@ -40,9 +39,7 @@ export function AuthProvider(props: { children: ReactNode }) {
     postItContract.address = ad;
     setAddress(ad);
     try {
-      console.log(ad);
       const user = await postItContract.getUserByAddress(ad);
-      console.log(user);
       if (user) {
         setSignedIn(true);
         setUser(user);
@@ -107,7 +104,6 @@ export function AuthProvider(props: { children: ReactNode }) {
       return await postItContract.post(text, media);
     },
     reply: async (postId, text, media) => {
-      console.log(postId, text, media);
       if (!address) {
         // TODO: snack bar message  "Önce giriş yapınız"
         return;
@@ -134,7 +130,6 @@ export function AuthProvider(props: { children: ReactNode }) {
     connect,
     signUp: async (username: string, profilePic: string | undefined): Promise<void> => {
       if (!username) return;
-      console.log(username, profilePic);
       
       return postItContract.signUp(username, profilePic).then(() => {
         postItContract.getUserByAddress(postItContract.address).then(userResponse => {

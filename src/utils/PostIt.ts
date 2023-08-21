@@ -682,7 +682,6 @@ class PostItContract implements PostItContract {
     this.contractAddress = contractAddress;
     this.contract = new Contract(abi, contractAddress, web3);
     web3.eth.subscribe('logs').then((val) => {
-      console.log(val);
       val.on('data', console.log);
     });
     this.events = this.contract.events;
@@ -703,12 +702,10 @@ class PostItContract implements PostItContract {
     if (mediaCid) {
       mediaHex = getBytes32FromIpfsHash(mediaCid);
     }
-    console.log(contentHash, contentHex, mediaHex.length);
 
     try {
       const tx = this.contract.methods.post(contentHex, mediaHex);
       const gas = (await tx.estimateGas({ from: this.address })).toString();
-      console.log(gas);
       
       await tx.send({ from: this.address, gas });
     } catch (error) {
@@ -762,7 +759,6 @@ class PostItContract implements PostItContract {
     try {
       const tx = this.contract.methods.signUp(nameHex, profileHex);
       const gas = (await tx.estimateGas({ from: this.address })).toString();
-      console.log(gas);
       await tx.send({ gas, from: this.address });
     } catch (error) {
       console.error(error);
@@ -832,7 +828,6 @@ class PostItContract implements PostItContract {
       return userResponse;
       
     } catch (error) {
-      console.log(error);
     }
     return undefined;
   }
@@ -855,7 +850,6 @@ class PostItContract implements PostItContract {
           return x;
         }));
       }));
-      console.log(result);
       
       return result;
     } catch (error) {
