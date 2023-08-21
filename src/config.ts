@@ -9,9 +9,8 @@ const IPFS_GATEWAY_DEV = 'http://127.0.0.1:8080';
 const IPFS_GATEWAY_PROD = 'https://ipfs.infura.io';
 
 const NETWORK_RPC_DEV = 'ws://127.0.0.1:7545';
-console.log(process.env);
+const NETWORK_RPC_PROD = 'wss://sepolia.infura.io/ws/v3/d6177f2a3f364b0a9e13954bb764fe70';
 
-const NETWORK_RPC_PROD = `wss://sepolia.infura.io/ws/v3/d6177f2a3f364b0a9e13954bb764fe70`;
 
 const env_vars = {
   CONTRACT_ADDRESS_DEV,

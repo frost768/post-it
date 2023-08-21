@@ -681,9 +681,9 @@ class PostItContract implements PostItContract {
   constructor(contractAddress: string = env.CONTRACT_ADDRESS) {
     this.contractAddress = contractAddress;
     this.contract = new Contract(abi, contractAddress, web3);
-    web3.eth.subscribe('logs').then((val) => {
-      val.on('data', console.log);
-    });
+    // web3.eth.subscribe('logs').then((val) => {
+    //   val.on('data', console.log);
+    // });
     this.events = this.contract.events;
     this.contract.events.UserReplied().on('data', onUserReplied);
     this.contract.events.UserSignedUp().on('data', onUserSignedUp);
